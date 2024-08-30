@@ -39,6 +39,7 @@ export async function POST(req: Request) {
         if (column) {
             // Update the latest record's column with the new state
             await client.query(
+                // RTW024 แก้
                 `UPDATE "RTW024"
                  SET ${column} = $1
                  WHERE id = (SELECT id FROM "RTW024" ORDER BY id DESC LIMIT 1)`,
@@ -66,6 +67,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
+        // RTW024 แก้
         const result = await client.query('SELECT blue,yellow FROM "RTW024"');
         return new Response(JSON.stringify(result.rows), {
             status: 200,
