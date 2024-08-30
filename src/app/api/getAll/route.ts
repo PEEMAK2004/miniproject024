@@ -24,7 +24,7 @@ const corsHeaders = {
 
 export async function GET() {
     try {
-        const result = await client.query('SELECT temperature,humidity,blue,yellow,ultrasonic,status,"LDR" FROM "RTW024"');
+        const result = await client.query('SELECT temperature,humidity,blue,yellow,ultrasonic,status,LDR FROM "RTW024"');
         return new Response(JSON.stringify(result.rows), {
             status: 200,
             headers: {
@@ -45,11 +45,11 @@ export async function GET() {
 export async function POST(request:Request) {
     try{
         const requestBody = await request.json(); // Parse the request body as JSON
-        const { temperature, humidity, LDR} = requestBody;
+        const { temperature, humidity } = requestBody;
 
         const result = await client.query(
-            'UPDATE "RTW024" SET temperature = $1, humidity = $2, LDR = $3 WHERE id = 1',
-            [temperature, humidity, LDR]
+            'UPDATE pn014 SET temperature = $1, humidity = $2 WHERE id = 1',
+            [temperature, humidity]
         );
 
         return new Response(JSON.stringify(result.rows), {
