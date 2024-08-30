@@ -24,8 +24,8 @@ const Dashboard = () => {
           setUltrasonic(latestData.ultrasonic || 0);
           setLdr(latestData.ldr || 0); // Ensure LDR has a value
 
-          setIsLedOn(latestData.red === "on");
-          setIsLedGreenOn(latestData.green === "on");
+          setIsLedOn(latestData.yellow === "on");
+          setIsLedGreenOn(latestData.blue === "on");
 
           if (latestData.id !== latestId) {
             setLatestId(latestData.id);
@@ -64,13 +64,13 @@ const Dashboard = () => {
   const toggleLed = async () => {
     const newState = isLedOn ? "off" : "on";
     setIsLedOn(!isLedOn);
-    await sendLedState("red", newState);
+    await sendLedState("yellow", newState);
   };
 
   const toggleUltrasonic = async () => {
     const newState = isLedGreenOn ? "off" : "on";
     setIsLedGreenOn(!isLedGreenOn);
-    await sendLedState("green", newState);
+    await sendLedState("blue", newState);
   };
 
   return (
