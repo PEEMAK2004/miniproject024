@@ -24,11 +24,11 @@ const corsHeaders = {
 export async function POST(Request: Request) {
     try {
         const requestBody = await Request.json(); // Parse the request body as JSON
-        const { ultrasonicValue, status, LDR } = requestBody;
+        const { ultrasonicValue, status } = requestBody;
 
         const result = await client.query(
-            'UPDATE "RTW024" SET ultrasonic = $1, status = $2, LDR = $3 WHERE id = $4',
-            [ultrasonicValue, status, LDR, 1]
+            'UPDATE pn014 SET ultrasonic = $1, status = $2 WHERE id = $3',
+            [ultrasonicValue, status, 1]
         );
 
         return new Response(JSON.stringify(result.rows), {
