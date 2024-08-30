@@ -39,10 +39,10 @@ export async function POST(req: Request) {
         if (column) {
             // Update the latest record's column with the new state
             await client.query(
-                // RTW024 แก้
-                `UPDATE "RTW024"
+                // S029 แก้
+                `UPDATE "S029"
                  SET ${column} = $1
-                 WHERE id = (SELECT id FROM "RTW024" ORDER BY id DESC LIMIT 1)`,
+                 WHERE id = (SELECT id FROM "S029" ORDER BY id DESC LIMIT 1)`,
                 [state] // Update the state value (e.g., "on" or "off")
             );
 
@@ -67,8 +67,8 @@ export async function POST(req: Request) {
 
 export async function GET() {
     try {
-        // RTW024 แก้
-        const result = await client.query('SELECT blue,yellow FROM "RTW024"');
+        // S029 แก้
+        const result = await client.query('SELECT blue,yellow FROM "S029"');
         return new Response(JSON.stringify(result.rows), {
             status: 200,
             headers: {
