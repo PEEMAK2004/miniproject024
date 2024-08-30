@@ -39,7 +39,7 @@ export async function POST(req: Request) {
         if (column) {
             // Update the latest record's column with the new state
             await client.query(
-                `UPDATE pn014
+                `UPDATE "RTW024"
                  SET ${column} = $1
                  WHERE id = (SELECT id FROM "RTW024" ORDER BY id DESC LIMIT 1)`,
                 [state] // Update the state value (e.g., "on" or "off")
