@@ -21,8 +21,8 @@ const Dashboard = () => {
           const latestData = data[data.length - 1];
           setTemperature(latestData.temperature);
           setHumidity(latestData.humidity);
-          setUltrasonic(latestData.ultrasonic || 0);
-          setLdr(latestData.ldr || 0); // Ensure LDR has a value
+          setUltrasonic(latestData.ultrasonic);
+          setLdr(latestData.LDR); // Ensure LDR has a value
 
           setIsLedOn(latestData.yellow === "on");
           setIsLedGreenOn(latestData.blue === "on");
